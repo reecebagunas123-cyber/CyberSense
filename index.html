@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyberSense | Home</title>
+  <meta name="description" content="CyberSense helps you detect phishing and scam patterns before you click.">
+
+  <link rel="shortcut icon" href="./assets/logo.jpg" type="image/x-icon">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="new.css">
+</head>
+
+<body>
+
+<header class="stage sticky top-0 z-40 border-b border-white/5 bg-[#05070d]/80 backdrop-blur-md relative">
+  <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+
+    <a href="/" data-nav-link class="flex items-center gap-2">
+      <img src="./assets/logo.jpg" alt="CyberSense logo" class="w-8 h-8 rounded-xl">
+      <span class="font-semibold text-lg tracking-tight">CyberSense</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+      <a href="/" data-nav-link data-route="/" class="nav-link transition-colors">Home</a>
+      <a href="/scanner" data-nav-link data-route="/scanner" class="nav-link transition-colors">Scanner</a>
+      <a href="/how-it-works" data-nav-link data-route="/how-it-works" class="nav-link transition-colors">How It Works</a>
+      <a href="/about" data-nav-link data-route="/about" class="nav-link transition-colors">About</a>
+    </nav>
+
+    <a href="/scanner" data-nav-link class="btn-primary btn-press px-4 py-2 rounded-full text-sm hidden md:inline-flex">
+      Scan now
+    </a>
+
+    <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white p-2" aria-label="Toggle menu" aria-expanded="false">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+
+  </div>
+
+  <!-- Moved OUT of the flex row, positioned to drop below the whole header -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 flex-col gap-1 px-5 py-4 bg-[#05070d] border-t border-white/5">
+    <a href="/" data-nav-link data-route="/" class="nav-link transition-colors py-2">Home</a>
+    <a href="/scanner" data-nav-link data-route="/scanner" class="nav-link transition-colors py-2">Scanner</a>
+    <a href="/how-it-works" data-nav-link data-route="/how-it-works" class="nav-link transition-colors py-2">How It Works</a>
+    <a href="/about" data-nav-link data-route="/about" class="nav-link transition-colors py-2">About</a>
+  </div>
+</header>
+
+<main class="stage" id="app-main">
+
+  <!-- ============================================================ -->
+  <!-- PAGE: HOME -->
+  <!-- ============================================================ -->
+  <section id="page-home" class="page-section is-active" data-page="home">
+
+    <!-- HERO -->
+    <section class="max-w-6xl mx-auto px-5 pt-16 pb-20 md:pt-24 md:pb-28 grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+
+        <span class="font-tech text-xs uppercase tracking-[0.2em] text-sky-400/80">
+          AI threat detection
+        </span>
+
+        <h1 class="mt-4 text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight max-w-xl">
+          See the scam before it sees you.
+        </h1>
+
+        <p class="mt-5 text-slate-300 max-w-md text-base leading-relaxed">
+          CyberSense helps you identify suspicious links, scam messages,
+          and phishing emails before they become a problem.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="/scanner" data-nav-link
+            class="btn-primary btn-press px-6 py-3 rounded-full text-sm inline-flex items-center gap-2">
+            Scan now
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </a>
+
+          <a href="/how-it-works" data-nav-link
+            class="btn-ghost btn-press px-6 py-3 rounded-full text-sm">
+            See how it works
+          </a>
+        </div>
+
+      </div>
+
+      <div class="reveal" style="transition-delay:80ms">
+        <div class="radar">
+          <div class="radar-ring"></div>
+          <div class="radar-ring radar-ring--inner"></div>
+          <div class="radar-pulse"></div>
+          <div class="radar-pulse delay-1"></div>
+          <div class="radar-pulse delay-2"></div>
+          <div class="radar-core"><i class="fa-solid fa-shield-halved"></i></div>
+
+          <div class="orbit" style="--orbit-duration:16s; transform:rotate(0deg)">
+            <div class="sat"><i class="fa-solid fa-link"></i></div>
+          </div>
+          <div class="orbit" style="--orbit-duration:16s; transform:rotate(120deg)">
+            <div class="sat"><i class="fa-solid fa-comment-sms"></i></div>
+          </div>
+          <div class="orbit" style="--orbit-duration:16s; transform:rotate(240deg)">
+            <div class="sat"><i class="fa-solid fa-envelope"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="max-w-6xl mx-auto px-5 py-16">
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="feature-card">
+          <i class="fa-solid fa-link text-sky-400 text-2xl mb-4"></i>
+          <h2 class="font-semibold text-lg mb-2">Check Links</h2>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Identify suspicious URLs, shortened links, and lookalike domains.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-comment-sms text-sky-400 text-2xl mb-4"></i>
+          <h2 class="font-semibold text-lg mb-2">Analyze Messages</h2>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Detect common patterns found in SMS scams and fraudulent messages.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fa-solid fa-envelope text-sky-400 text-2xl mb-4"></i>
+          <h2 class="font-semibold text-lg mb-2">Inspect Emails</h2>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Check suspicious emails for phishing indicators and pressure tactics.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PAGE: SCANNER -->
+  <!-- ============================================================ -->
+  <section id="page-scanner" class="page-section" data-page="scanner">
+    <section class="max-w-3xl mx-auto px-5 py-16 md:py-24">
+
+      <div class="text-center mb-10">
+        <span class="font-tech text-xs uppercase tracking-[0.2em] text-sky-400/80">
+          Threat scanner
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold mt-3">Run a security check</h1>
+        <p class="text-slate-400 mt-3">Choose what you want CyberSense to analyze.</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="glass-panel rounded-2xl p-2 flex gap-1 mb-6">
+        <button data-tab="link" class="tab-btn is-active flex-1 py-2.5 px-2 rounded-xl text-sm">
+          <i class="fa-solid fa-link mr-1.5"></i>
+          Link
+        </button>
+        <button data-tab="text" class="tab-btn flex-1 py-2.5 px-2 rounded-xl text-sm">
+          <i class="fa-solid fa-comment-sms mr-1.5"></i>
+          Text
+        </button>
+        <button data-tab="email" class="tab-btn flex-1 py-2.5 px-2 rounded-xl text-sm">
+          <i class="fa-solid fa-envelope mr-1.5"></i>
+          Email
+        </button>
+      </div>
+
+      <!-- SCANNER PANEL -->
+      <div class="glass-panel rounded-2xl p-5 md:p-6">
+
+        <!-- LINK -->
+        <div id="link-tab" class="tab-content flex flex-col">
+          <h2 class="font-semibold mb-1">Check a suspicious link</h2>
+          <p class="text-slate-400 text-sm mb-4">Paste a URL to check for phishing patterns.</p>
+          <input id="link-input" type="text" placeholder="https://example.com"
+            class="w-full p-3 bg-white/5 border border-white/10 rounded-xl mb-4 text-sm placeholder:text-slate-500 focus:outline-none">
+          <button id="scan-link-btn" class="btn-primary btn-press w-full py-3 rounded-xl text-sm font-semibold">
+            Scan link
+          </button>
+          <div id="link-result" class="result-box result-loading mt-4 hidden"></div>
+        </div>
+
+        <!-- TEXT -->
+        <div id="text-tab" class="tab-content hidden flex-col">
+          <h2 class="font-semibold mb-1">Analyze a suspicious message</h2>
+          <p class="text-slate-400 text-sm mb-4">Paste an SMS or message to check for scam patterns.</p>
+          <textarea id="text-input" rows="6" placeholder="URGENT: Your bank account is locked..."
+            class="w-full p-3 bg-white/5 border border-white/10 rounded-xl mb-4 text-sm placeholder:text-slate-500 focus:outline-none"></textarea>
+          <button id="scan-text-btn" class="btn-primary btn-press w-full py-3 rounded-xl text-sm font-semibold">
+            Scan message
+          </button>
+          <div id="text-result" class="result-box result-loading mt-4 hidden"></div>
+        </div>
+
+        <!-- EMAIL -->
+        <div id="email-tab" class="tab-content hidden flex-col">
+          <h2 class="font-semibold mb-1">Analyze a suspicious email</h2>
+          <p class="text-slate-400 text-sm mb-4">Paste an email body to check for phishing patterns.</p>
+          <textarea id="email-input" rows="7" placeholder="Paste email body here..."
+            class="w-full p-3 bg-white/5 border border-white/10 rounded-xl mb-4 text-sm placeholder:text-slate-500 focus:outline-none"></textarea>
+          <button id="scan-email-btn" class="btn-primary btn-press w-full py-3 rounded-xl text-sm font-semibold">
+            Scan email
+          </button>
+          <div id="email-result" class="result-box result-loading mt-4 hidden"></div>
+        </div>
+
+      </div>
+
+      <!-- RESULTS INFORMATION -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold mb-4">How results are presented</h2>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="feature-card">
+            <i class="fa-solid fa-shield text-sky-400 mb-3"></i>
+            <h3 class="font-semibold">Safe</h3>
+            <p class="text-slate-400 text-sm mt-2">No major suspicious patterns detected.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fa-solid fa-triangle-exclamation text-yellow-400 mb-3"></i>
+            <h3 class="font-semibold">Suspicious</h3>
+            <p class="text-slate-400 text-sm mt-2">Potential scam indicators were detected.</p>
+          </div>
+          <div class="feature-card">
+            <i class="fa-solid fa-skull-crossbones text-red-400 mb-3"></i>
+            <h3 class="font-semibold">High Risk</h3>
+            <p class="text-slate-400 text-sm mt-2">Strong phishing or scam indicators detected.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PAGE: HOW IT WORKS -->
+  <!-- ============================================================ -->
+  <section id="page-how-it-works" class="page-section" data-page="how-it-works">
+    <section class="max-w-6xl mx-auto px-5 py-20">
+
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="font-tech text-xs uppercase tracking-[0.2em] text-sky-400/80">
+          Detection system
+        </span>
+        <h1 class="text-3xl md:text-5xl font-bold mt-3">How CyberSense works</h1>
+        <p class="text-slate-400 mt-4">
+          CyberSense analyzes common indicators associated with
+          phishing, fraud, and social engineering attacks.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="feature-card">
+          <i class="fa-solid fa-link text-sky-400 text-3xl mb-5"></i>
+          <h2 class="font-semibold text-xl mb-3">Suspicious Links</h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            CyberSense checks URLs for suspicious structures, shortened
+            redirects, unusual domains, and lookalike websites.
+          </p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-comment-sms text-sky-400 text-3xl mb-5"></i>
+          <h2 class="font-semibold text-xl mb-3">Scam Messages</h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Messages are checked for urgency, fake rewards, financial
+            requests, account warnings, and other common scam patterns.
+          </p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-envelope text-sky-400 text-3xl mb-5"></i>
+          <h2 class="font-semibold text-xl mb-3">Phishing Emails</h2>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Email content can be examined for suspicious senders, fake
+            invoices, credential requests, and social-engineering techniques.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-2xl p-8 mt-10">
+        <h2 class="text-2xl font-bold mb-6">Simple three-step process</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <span class="text-sky-400 font-tech text-sm">01</span>
+            <h3 class="font-semibold mt-2">Paste</h3>
+            <p class="text-slate-400 text-sm mt-2">Enter a suspicious link, message, or email.</p>
+          </div>
+          <div>
+            <span class="text-sky-400 font-tech text-sm">02</span>
+            <h3 class="font-semibold mt-2">Analyze</h3>
+            <p class="text-slate-400 text-sm mt-2">CyberSense checks the submitted content for suspicious indicators.</p>
+          </div>
+          <div>
+            <span class="text-sky-400 font-tech text-sm">03</span>
+            <h3 class="font-semibold mt-2">Understand</h3>
+            <p class="text-slate-400 text-sm mt-2">Review the result and understand why something may be risky.</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PAGE: ABOUT -->
+  <!-- ============================================================ -->
+  <section id="page-about" class="page-section" data-page="about">
+    <section class="max-w-6xl mx-auto px-5 py-20">
+
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="font-tech text-xs uppercase tracking-[0.2em] text-sky-400/80">
+            About CyberSense
+          </span>
+          <h1 class="text-3xl md:text-5xl font-bold mt-3 mb-6">Helping people stay safer online.</h1>
+          <p class="text-slate-300 leading-relaxed">
+            CyberSense was created to make phishing and scam detection
+            easier for everyday users.
+          </p>
+          <p class="text-slate-400 text-sm leading-relaxed mt-5">
+            Online scams are designed to create urgency and pressure people
+            into making quick decisions. CyberSense provides a simple way
+            to pause, check suspicious content, and make a more informed
+            decision before clicking or responding.
+          </p>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-8">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="./assets/logo.jpg" class="w-16 h-16 rounded-2xl" alt="CyberSense logo">
+            <div>
+              <h2 class="text-xl font-bold">CyberSense</h2>
+              <p class="text-slate-400 text-sm">AI-assisted threat awareness</p>
+            </div>
+          </div>
+
+          <div class="space-y-5">
+            <div class="flex gap-3">
+              <i class="fa-solid fa-shield text-sky-400 mt-1"></i>
+              <div>
+                <h3 class="font-semibold text-sm">Our Mission</h3>
+                <p class="text-slate-400 text-sm mt-1">
+                  Make cybersecurity awareness simple, understandable, and accessible.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <i class="fa-solid fa-users text-sky-400 mt-1"></i>
+              <div>
+                <h3 class="font-semibold text-sm">Our Goal</h3>
+                <p class="text-slate-400 text-sm mt-1">
+                  Help users recognize suspicious online activity before it causes harm.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <i class="fa-solid fa-lock text-sky-400 mt-1"></i>
+              <div>
+                <h3 class="font-semibold text-sm">Privacy</h3>
+                <p class="text-slate-400 text-sm mt-1">
+                  CyberSense is designed with privacy and responsible analysis in mind.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel rounded-2xl p-8 mt-12">
+        <h2 class="text-2xl font-bold mb-4">Why CyberSense?</h2>
+        <p class="text-slate-400 leading-relaxed">
+          Phishing attacks can affect anyone. A message may appear to come
+          from a bank, delivery company, employer, friend, or online
+          service. CyberSense provides a quick first layer of awareness by
+          highlighting patterns that may indicate a scam.
+        </p>
+      </div>
+
+    </section>
+  </section>
+
+</main>
+
+<footer class="stage border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-5 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <img src="./assets/logo.jpg" alt="CyberSense logo" class="w-6 h-6 rounded-lg">
+      <span class="font-semibold">CyberSense</span>
+    </div>
+    <p class="text-slate-500 text-xs max-w-md md:text-right">
+      Analysis is AI-assisted and may not catch every threat.
+      When in doubt, don't click.
+    </p>
+  </div>
+</footer>
+
+
+
+<!-- ============================================================ -->
+<!-- CHAT WIDGET -->
+<!-- Reconstructed to match new.css selectors + script.js hooks.  -->
+<!-- Swap in your real widget markup here if it differs.          -->
+<!-- ============================================================ -->
+<div id="chat-widget" class="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+  <div id="chat-panel" class="glass-panel rounded-2xl w-80 max-w-[90vw] h-[26rem] flex flex-col overflow-hidden">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-white/5">
+      <span class="font-semibold text-sm flex items-center gap-2">
+        <i class="fa-solid fa-shield-halved text-sky-400"></i>
+        CyberSense Assistant
+      </span>
+      <button id="chat-close-btn" aria-label="Close chat" class="text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <div id="chat-box" class="flex-1 overflow-y-auto p-4 flex flex-col gap-2"></div>
+    <div class="p-3 border-t border-white/5 flex gap-2">
+      <input id="chat-input" type="text" placeholder="Ask a question..."
+        class="flex-1 p-2.5 bg-white/5 border border-white/10 rounded-xl text-sm placeholder:text-slate-500 focus:outline-none">
+      <button id="chat-send-btn" aria-label="Send message"
+        class="btn-primary btn-press w-10 h-10 rounded-xl flex items-center justify-center shrink-0">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <button id="chat-toggle-btn" class="fab-pulse" aria-expanded="false" aria-label="Toggle chat assistant">
+    <i class="fa-solid fa-comment-dots"></i>
+  </button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
