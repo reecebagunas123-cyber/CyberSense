@@ -41,7 +41,7 @@ export default async function handler(req, res) {
   }
 
   const body = {
-    model: 'gemini-flash-latest',
+    model: 'gemini-3.6-flash',
     messages: [
       { role: 'system', content: systemPrompt },
       { role: 'user', content: inputText }
@@ -49,21 +49,31 @@ export default async function handler(req, res) {
   };
 
   try {
-    const geminiRes = await fetch(ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${API_KEY}`
-      },
-      body: JSON.stringify(body)
-    });
+  const geminiRes = await fetch(ENDPOINT, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${API_KEY}`
+    },
+    body: JSON.stringify(body)
+  });
 
-    const data = await geminiRes.json();
-    const content = data?.choices?.[0]?.message?.content?.trim() || 'No response from AI.';
+  const data = await geminiRes.json();
 
-    return res.status(200).json({ result: content });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: 'Error contacting AI provider' });
+  if (!geminiRes.ok) {
+    console.error('Upstream API error:', geminiRes.status, data);
+    return res.status(502).json({ error: `Upstream error (${geminiRes.status})`, details: data });
   }
+
+  const content = data?.choices?.[0]?.message?.content?.trim();
+  if (!content) {
+    console.error('Unexpected response shape:', JSON.stringify(data));
+    return res.status(502).json({ error: 'Unexpected AI response format' });
+  }
+
+  return res.status(200).json({ result: content });
+} catch (err) {
+  console.error(err);
+  return res.status(500).json({ error: 'Error contacting AI provider' });
+}
 }
