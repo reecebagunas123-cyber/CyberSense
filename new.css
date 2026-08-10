@@ -1,0 +1,498 @@
+/* ==========================================================================
+   CyberSense — design tokens
+   ========================================================================== */
+:root {
+  --bg: #05070d;
+  --bg-elevated: #0b1220;
+  --panel-border: rgba(56, 189, 248, 0.18);
+  --panel-border-strong: rgba(56, 189, 248, 0.32);
+  --accent: #3b82f6;
+  --accent-2: #38bdf8;
+  --text: #e6edf7;
+  --text-muted: #93a1b8;
+  --safe: #34d399;
+  --scam: #f87171;
+  --warn: #fbbf24;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.font-tech {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Ambient circuit-grid backdrop, sits behind all content */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black, transparent 70%);
+  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black, transparent 70%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.16), transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stage {
+  position: relative;
+  z-index: 1;
+}
+
+/* Focus visibility (accessibility floor) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* ==========================================================================
+   Reusable surfaces
+   ========================================================================== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.btn-press {
+  transition: transform 160ms var(--ease-out), box-shadow 200ms ease, opacity 200ms ease;
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #04070d;
+  font-weight: 600;
+}
+.btn-primary:hover {
+  box-shadow: 0 0 28px rgba(56, 189, 248, 0.4);
+}
+
+.btn-ghost {
+  border: 1px solid var(--panel-border-strong);
+  color: var(--text);
+  background: transparent;
+}
+.btn-ghost:hover {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+/* Tabs — CSS transitions, not keyframes, so rapid clicks retarget smoothly */
+.tab-btn {
+  transition: background 200ms ease, color 200ms ease, transform 160ms var(--ease-out);
+  color: var(--text-muted);
+}
+.tab-btn:active {
+  transform: scale(0.97);
+}
+.tab-btn.is-active {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #04070d;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SPA page sections — only one visible at a time (no scrolling between them)
+   ========================================================================== */
+.page-section {
+  display: none;
+}
+.page-section.is-active {
+  display: block;
+}
+
+/* Nav link active/inactive state, toggled by the router in script.js */
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: var(--text-muted);
+}
+.nav-link:hover {
+  color: var(--text);
+}
+.nav-link.is-active-link {
+  
+  background: linear-gradient(135deg, #265eb7, #247da4);
+  color: var(--text);
+}
+
+/* ==========================================================================
+   Scroll-reveal (IntersectionObserver driven, transform+opacity only)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   Radar signature visual (hero)
+   ========================================================================== */
+.radar {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+}
+
+.radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px dashed rgba(56, 189, 248, 0.35);
+  animation: radar-spin 20s linear infinite;
+}
+.radar-ring--inner {
+  inset: 16%;
+  border-style: solid;
+  border-color: rgba(56, 189, 248, 0.2);
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+
+.radar-pulse {
+  position: absolute;
+  inset: 32%;
+  border-radius: 9999px;
+  border: 1px solid var(--accent-2);
+  animation: radar-ping 3.2s ease-out infinite;
+}
+.radar-pulse.delay-1 { animation-delay: 1.05s; }
+.radar-pulse.delay-2 { animation-delay: 2.1s; }
+
+.radar-core {
+  position: absolute;
+  inset: 38%;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35), rgba(56, 189, 248, 0) 70%);
+}
+.radar-core i {
+  font-size: 2rem;
+  color: var(--accent-2);
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.65));
+}
+
+.orbit {
+  position: absolute;
+  inset: 0;
+  animation: radar-spin var(--orbit-duration, 16s) linear infinite;
+}
+.orbit .sat {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: -1.25rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 18, 32, 0.85);
+  border: 1px solid var(--panel-border-strong);
+  animation: radar-spin var(--orbit-duration, 16s) linear infinite reverse;
+}
+.orbit .sat i {
+  color: var(--accent-2);
+  font-size: 0.95rem;
+}
+
+@keyframes radar-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes radar-ping {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ==========================================================================
+   Scan result states
+   ========================================================================== */
+.result-box {
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid transparent;
+  transition: opacity 220ms ease, transform 220ms var(--ease-out), filter 220ms ease;
+}
+.result-loading { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.12); color: var(--text-muted); }
+.result-safe    { background: rgba(52, 211, 153, 0.08); border-color: rgba(52, 211, 153, 0.35); color: #a7f3d0; }
+.result-scam    { background: rgba(248, 113, 113, 0.1); border-color: rgba(248, 113, 113, 0.4); color: #fecaca; }
+.result-warn    { background: rgba(251, 191, 36, 0.1); border-color: rgba(251, 191, 36, 0.4); color: #fde68a; }
+
+/* ==========================================================================
+   Feature bento (asymmetric — not three equal cards)
+   ========================================================================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+  .feature-card--lead {
+    grid-row: 1 / span 2;
+  }
+}
+.feature-card {
+  border-radius: 1.25rem;
+  padding: 1.75rem;
+  border: 1px solid var(--panel-border);
+  position: relative;
+  overflow: hidden;
+}
+.feature-card--lead {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.18), transparent 55%),
+    rgba(255, 255, 255, 0.03);
+}
+.feature-card--grid {
+  background:
+    linear-gradient(rgba(56,189,248,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.06) 1px, transparent 1px),
+    rgba(255, 255, 255, 0.03);
+  background-size: 20px 20px, 20px 20px, 100% 100%;
+}
+.feature-card--flat {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ==========================================================================
+   Chat widget
+   ========================================================================== */
+/* The wrapper reserves layout space equal to the chat panel's height even
+   while the panel is visually hidden (opacity: 0). Without this, the empty
+   space in the wrapper's bounding box still intercepts clicks meant for
+   whatever sits underneath it (e.g. the scanner tabs on smaller screens). */
+#chat-widget {
+  pointer-events: none;
+}
+
+#chat-toggle-btn {
+  pointer-events: auto;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #04070d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.35);
+  position: relative;
+  transition: transform 160ms var(--ease-out);
+}
+#chat-toggle-btn:hover { transform: scale(1.04); }
+#chat-toggle-btn:active { transform: scale(0.96); }
+
+.fab-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 9999px;
+  border: 2px solid var(--accent-2);
+  animation: radar-ping 2.4s ease-out infinite;
+}
+
+#chat-panel {
+  transform-origin: bottom right;
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  pointer-events: none;
+  transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+}
+#chat-panel.is-open {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+#chat-box::-webkit-scrollbar { width: 6px; }
+#chat-box::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.35);
+  border-radius: 9999px;
+}
+
+.msg-user, .msg-bot {
+  max-width: 85%;
+  padding: 0.55rem 0.85rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+.msg-user {
+  margin-left: auto;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #04070d;
+  border-radius: 1rem 1rem 0.25rem 1rem;
+}
+.msg-bot {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  border-radius: 1rem 1rem 1rem 0.25rem;
+}
+
+.typing-dots::after {
+  content: '';
+  display: inline-block;
+  width: 1ch;
+  text-align: left;
+  animation: dots 1.4s steps(3, end) infinite;
+}
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+/* ==========================================================================
+   Responsive tweaks
+   ========================================================================== */
+@media (max-width: 640px) {
+  .radar { width: 200px; height: 200px; }
+  #chat-panel {
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion — disable movement, keep opacity transitions
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .radar-ring, .radar-pulse, .orbit, .orbit .sat, .fab-pulse::before {
+    animation: none !important;
+  }
+  .reveal {
+    transform: none !important;
+    transition: opacity 300ms ease !important;
+  }
+}
+
+/* ==========================================================================
+   1. BOX SIZING & RESET
+   Ensures padding/borders don't push elements past 100% width.
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   2. BASE FLUID STYLES (Mobile First)
+   Default styles target small mobile screens (~320px - 480px).
+   ========================================================================== */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  overflow-x: hidden; /* Prevents accidental horizontal scrolling */
+}
+
+/* Prevent images, videos, and canvas from overflowing their containers */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Main content wrapper to center layout on wider screens */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Limits width on ultra-wide laptops */
+  margin: 0 auto;
+  padding-left: 1rem;  /* 16px padding on mobile edges */
+  padding-right: 1rem;
+}
+
+/* Single column layout by default (Phones) */
+.grid-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+/* ==========================================================================
+   3. TABLETS (Portrait & Landscape: 768px and up)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Switches layout to 2 columns on tablets */
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ==========================================================================
+   4. LAPTOPS & DESKTOPS (1024px and up)
+   ========================================================================== */
+@media (min-width: 1024px) {
+  /* Switches layout to 3 or 4 columns on laptops */
+  .grid-layout {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* ==========================================================================
+   5. LARGE LAPTOPS & DESKTOPS (1440px and up)
+   ========================================================================== */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1320px;
+  }
+}
