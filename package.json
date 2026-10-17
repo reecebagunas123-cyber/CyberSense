@@ -1,0 +1,21 @@
+{
+  "name": "cybersense",
+  "version": "1.0.0",
+  "description": "CyberSense is a phishing-awareness web app that lets users scan suspicious links, SMS messages, and emails with AI assistance. The frontend sends requests to a serverless function (`/api/analyze`), which calls Google's Gemini API on the server side — so your API key never touches the browser.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reecebagunas123-cyber/CyberSense.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/reecebagunas123-cyber/CyberSense/issues"
+  },
+  "homepage": "https://github.com/reecebagunas123-cyber/CyberSense#readme"
+}
