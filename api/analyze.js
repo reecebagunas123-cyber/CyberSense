@@ -28,7 +28,7 @@ export default async function handler(req, res) {
     - Be concise, warm, and clear.
     - Do not only answer "SAFE" or "SCAM".
     - Give helpful steps or examples if relevant.
-    - Keep answers short (1-3 sentences).
+    - Keep answers short (1 sentence).
     - Be language sensitive
     `;
   } else {

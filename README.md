@@ -118,7 +118,7 @@ This is a fixed URL provided by Google — you don't need to create or configure
 
 ```js
 const body = {
-  model: 'gemini-flash-latest', // <-- update if this model name is deprecated
+  model: 'gemini-3.8-flash-latest', // <-- update if this model name is deprecated
   ...
 };
 ```
